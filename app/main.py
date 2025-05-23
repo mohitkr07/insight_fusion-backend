@@ -9,6 +9,11 @@ from app.services.orchestrator import stream_all_agents
 
 app = FastAPI()
 
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to the FastAPI app!"}
+
+
 @app.post("/analyze", response_model=ScenarioResponse)
 async def analyze_scenario(scenario: ScenarioRequest):
     result = await run_agents(scenario.scenario)
